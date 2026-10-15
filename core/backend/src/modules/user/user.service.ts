@@ -84,7 +84,7 @@ export class UserService implements IUserService {
       throw new InternalServerErrorException(error);
     }
   }
- /* async updateRole(updateUserRole: UpdateUserDto): Promise<IApiResponse<string>> {
+  /* async updateRole(updateUserRole: UpdateUserDto): Promise<IApiResponse<string>> {
     try {
 
     } catch (error) {
