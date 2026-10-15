@@ -13,38 +13,38 @@ import { User } from '../../user/entities/user.entity';
 @Entity('documents')
 export class Document {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  document_code!: string;
 
   @Column({ type: 'varchar', length: 255 })
-  title: string;
+  document_title!: string;
 
   @Column({ type: 'varchar', length: 255, name: 'original_name' })
-  originalName: string;
+  originalName!: string;
 
   @Column({ type: 'varchar', length: 100, name: 'mime_type' })
-  mimeType: string;
+  mimeType!: string;
 
   @Column({ type: 'integer' })
-  size: number;
+  size!: number;
 
   @Column({ type: 'boolean', default: false, name: 'is_sensitive' })
-  isSensitive: boolean;
+  isSensitive!: boolean;
 
   @Column({ type: 'text', name: 'file_path' })
-  filePath: string;
+  filePath!: string;
 
   @Column({ type: 'uuid', name: 'owner_id' })
-  ownerId: string;
+  ownerId!: string;
 
-  @ManyToOne(() => User, (user) => user.documents, {
+  @ManyToOne(() => User, (user) => user.user_documents, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'owner_id' })
-  owner: User;
+  document_owner!: User;
 
   @CreateDateColumn({ type: 'timestamptz', name: 'created_at' })
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn({ type: 'timestamptz', name: 'updated_at' })
-  updatedAt: Date;
+  updatedAt!: Date;
 }

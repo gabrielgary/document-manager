@@ -1,34 +1,34 @@
 services:
-  backend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: document-manager-backend
-    restart: unless-stopped
-    ports:
-      - "${API_PORT:-3000}:3000"
-    environment:
-      NODE_ENV: production
-      DB_HOST: db
-      DB_PORT: 5432
-      DB_USERNAME: ${POSTGRES_USER:-postgres}
-      DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-      DB_DATABASE: ${POSTGRES_DB:-document_manager}
-      DB_SYNCHRONIZE: ${DB_SYNCHRONIZE:-false}
-    depends_on:
-      db:
-        condition: service_healthy
+#  backend:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: document-manager-backend
+#    restart: unless-stopped
+#    ports:
+#      - "${API_PORT:-3000}:3000"
+#    environment:
+#      NODE_ENV: production
+#      DB_HOST: db
+#      DB_PORT: 5432
+#      DB_USERNAME: ${POSTGRES_USER}
+#      DB_PASSWORD: ${POSTGRES_PASSWORD}
+#      DB_DATABASE: ${POSTGRES_DB}
+#      DB_SYNCHRONIZE: ${DB_SYNCHRONIZE}
+#    depends_on:
+#      db:
+#        condition: service_healthy
 
   db:
-    image: postgres:16-alpine
+    image: postgres:17-alpine
     container_name: document-manager-db
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-      POSTGRES_DB: ${POSTGRES_DB:-document_manager}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "${DB_PORT:-5432}:5432"
+      - "${DB_PORT}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:

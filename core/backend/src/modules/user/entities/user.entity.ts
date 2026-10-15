@@ -33,7 +33,7 @@ export class User {
   })
   user_role!: UserRole;
 
-  @OneToMany(() => Document, (document) => document.owner)
+  @OneToMany(() => Document, (document) => document.document_owner)
   user_documents!: Document[];
 
   @CreateDateColumn({ type: 'timestamptz', name: 'created_at' })
